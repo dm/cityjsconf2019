@@ -4,7 +4,7 @@
         <section class="section">
             <div class="">
                 <div class="columns">
-                        <div class=' column  has-background is-active'
+                        <div :class="['column has-background is-active', {'middle':item.middle === 'Yes'}]"
                             v-for="item in TypedItems"
                             v-bind:key="item._id"
                         >
@@ -49,6 +49,10 @@
 <style lang="sass" scoped>
   @import '~/assets/css/mq.sass';
   
+  .middle
+    display: flex;
+    align-items: center;
+
   .uppercase
     text-transform: uppercase;
 </style>

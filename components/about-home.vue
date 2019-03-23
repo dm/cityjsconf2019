@@ -60,7 +60,7 @@
 <style lang="sass" scoped>
     @import '~/assets/css/mq.sass';
     .about-home
-        margin-top: -230px;
+        margin-top: -250px;
         +mobile
           margin-top: 50vw;
     .backimg
@@ -68,13 +68,13 @@
         background-repeat: no-repeat;
         background-size: cover;
         padding: 150px 0;
-        height: 700px;
+        height: 750px;
         +mobile
-            background-position: 30% -200px;
+            background-position: 34% -150px;
             background-repeat: no-repeat;
             background-size: cover;
             padding: 150px 0;
-            height: 255vw;
+            height: 275vw;
         .card
             top: -23px;
             +mobile
@@ -110,7 +110,7 @@
 
     .about
        width: 100%;
-       min-height: 444px;
+       min-height: 500px;
 
     .about-content
         padding: 10.3rem

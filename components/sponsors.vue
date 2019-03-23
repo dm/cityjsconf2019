@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="columns is-centered is-half">
-               <div class="column is-10 has-text-centered">
+               <div class="column is-10 has-text-centered is-vertical-center">
                 <app-sponsor
                   :items="items"
                   level="Gold"
@@ -90,5 +90,4 @@
 
 <style lang="sass" scoped>
   @import '~/assets/css/mq.sass';
-
 </style>

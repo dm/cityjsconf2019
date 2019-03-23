@@ -5,7 +5,8 @@
                 <div>
                     <app-h2
                         title="Schedule"
-                        subtitle="3 days of JS Festivities around the center of London"
+                        subtitle="3 days of JS Festivities around the center of London subjects
+                        "
                         :is-h2="true"
                         :white="true"
                     >
@@ -13,14 +14,19 @@
                 </div>
                 <div class="columns is-centered">
                     <div class="column is-half-desktop">
-                        <div class="column is-7 ">
+                        <div class="column is-12 ">
                             <div class="tabs is-toggle">
+                                
                                 <ul class="">
                                     <li 
                                         v-for="(date, index) in Days"
                                         v-bind:key="date"
                                         :class="{'is-active':date === chosen}">
-                                        <a v-on:click="select(date)">Day {{index+1}}</a>
+                                        <a v-on:click="select(date)"
+                                        >
+                                            <span v-if="index<2">Day {{index+1}} </span> 
+                                            <span v-if="index==2">Conference Day</span> 
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

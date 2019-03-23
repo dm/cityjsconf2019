@@ -4,9 +4,12 @@
     <div class="columns">
         <div class="column is-8">
           <h2> 
-              3 days of JavaScript Festivities including, <br/>
-              6 Free <a href="/workshops">Workshops</a>,  <br/>
-              10 International <a href="/speakers">Speakers</a><br/>
+              3 days of JS Festivities including, <br/>10 International <a href="/speakers">Speakers</a>, 
+              6 Free <a href="/workshops">Workshops</a>
+               <br/>
+              <span>focused on <br/>
+              core JavaScript, frameworks, NodeJS,  Machine Learning,  Artificial 
+                Intelligence, <br/> Web Assembly, Data streams, Server Side Rendering &amp; Performance</span>
           </h2>
         </div>
         <div class="column is-4">
@@ -122,6 +125,19 @@
 
 <style lang="sass" scoped>
   @import '~/assets/css/mq.sass';
+  h2 
+    color: $black
+    font-size: 1.875rem;
+    line-height: 1.9rem;
+    text-transform: none;
+    padding: 20px;
+    span
+      font-size: 1rem;
+      line-height: 1rem;
+      +mobile
+        line-height: 2rem;
+        font-size: 1.2rem;
+        padding: 10px;
 
   .timer
     color: #fff;
@@ -141,16 +157,6 @@
       width: 100%;
     a
       color: $darkred;
-    h2 
-      color: $black
-      font-size: 1.875rem;
-      line-height: 2.75rem;
-      text-transform: none;
-      padding: 20px;
-      +mobile
-        line-height: 2rem;
-        font-size: 1.2rem;
-        padding: 10px;
     .block
       background-color: $black;
       height: 20px
@@ -193,6 +199,6 @@
         &.expired
           background-color: silver;
       
-     
+       
       
 </style>
