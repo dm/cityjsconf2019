@@ -1,0 +1,75 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run: sudo npm install -g npm
+
+      - attach_workspace:
+          at: ~/repo
+
+      - restore_cache:
+          keys:
+            - cache-v4-{{ checksum "package.json" }}
+            - cache-v4-
+      - run: npm ci
+      - save_cache:
+          paths:
+            - ./node-modules
+          key: cache-v4-{{ checksum "package.json" }}
+      - run:
+          name: Write .env
+          command: |
+            cat << EOF > .env
+            API_KEY=${ENV_API_TOKEN}
+            YEAR=${ENV_YEAR}
+            EOF
+      - run:
+          name: Build GH Pages
+          command: npm run build:gh-pages
+      - run:
+          name: Generate GH Pages
+          command: npm run generate:gh-pages
+      - persist_to_workspace:
+          root: ~/repo/dist
+          paths:
+            - .
+  deploy_gh_pages:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo/dist
+      - run:
+          name: Deploying to GitHub Pages
+          command: |
+            sudo npm install -g npm ;\
+            npm install gh-pages --no-save ;\
+            git config --global user.email "Build_${CIRCLE_BUILD_NUM}@users.noreply.github.com" ;\
+            git config --global user.name "CircleCI"
+      - run:
+          command: |
+            ./node_modules/.bin/gh-pages \
+              -d ./dist \
+              -m "Released with CircleCI@${CIRCLE_BUILD_NUM}"
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - deploy_gh_pages:
+          requires:
+            - build
+          filters:
+            branches:
+              only: year-version
